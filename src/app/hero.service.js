@@ -9,22 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var hero_1 = require('./hero');
-var HeroDetailComponent = (function () {
-    function HeroDetailComponent() {
+var mock_heroes_1 = require('./mock-heroes');
+var HeroService = (function () {
+    function HeroService() {
     }
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', hero_1.Hero)
-    ], HeroDetailComponent.prototype, "hero", void 0);
-    HeroDetailComponent = __decorate([
-        core_1.Component({
-            selector: 'my-hero-detail',
-            template: "\n    <div *ngIf=\"hero\">\n      <h2>{{hero.name}} details!</h2>\n      <div>\n        <label>id: </label>{{hero.id}}\n      </div>\n      <div>\n        <label>name: </label>\n        <input [(ngModel)]=\"hero.name\" placeholder=\"name\"/>\n      </div>\n    </div>\n  "
-        }), 
+    HeroService.prototype.getHeroes = function () {
+        return Promise.resolve(mock_heroes_1.HEROES);
+    };
+    // See the "Take it slow" appendix
+    HeroService.prototype.getHeroesSlowly = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            // Simulate server latency with 2 second delay
+            setTimeout(function () { return resolve(_this.getHeroes()); }, 2000);
+        });
+    };
+    HeroService = __decorate([
+        core_1.Injectable(), 
         __metadata('design:paramtypes', [])
-    ], HeroDetailComponent);
-    return HeroDetailComponent;
+    ], HeroService);
+    return HeroService;
 }());
-exports.HeroDetailComponent = HeroDetailComponent;
-//# sourceMappingURL=hero-detail.component.js.map
+exports.HeroService = HeroService;
+//# sourceMappingURL=hero.service.js.map
