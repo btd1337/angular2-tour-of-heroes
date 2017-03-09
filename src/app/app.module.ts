@@ -1,3 +1,4 @@
+import { HeroSearchComponent } from './hero-search.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { HeroesComponent } from './heroes.component';
@@ -27,9 +28,10 @@ import { HeroService } from './hero.service';
     AppComponent,
     DashboardComponent,
     HeroDetailComponent,
-    HeroesComponent
+    HeroesComponent,
+    HeroSearchComponent
   ],
-  providers: [ HeroService ],
+  providers: [ HeroService  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
